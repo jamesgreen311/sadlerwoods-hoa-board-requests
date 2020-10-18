@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base target="_top" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>Sadler Woods Homeowner Requests</title>
+
+    <?!= include("Includes/css/bootstrap"); ?>
+    <?!= include("Includes/css/global"); ?>
+    <?!= include("Includes/css/request"); ?>
+</head>
+
+<body>
+    <?!= include("Includes/html/header"); ?>
+    <div class="container hoa-container pt-3">
+        <h1>Homeowner Request</h1>
+        <h5 class="text-right">* <span class="badge badge-secondary">Required</span></h5>
+        <form id="frmMain" class="mb-5">
+            <div class="form-group">
+                <label for="homeownerName">Homeowner Contact Information *</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">First Name</span>
+                    </div>
+                    <input type="text" class="form-control" id="firstName" aria-label="First Name" required />
+                    <div class="invalid-feedback">First name is required</div>
+                    <div class="input-group-prepend ml-3">
+                        <span class="input-group-text">Last Name</span>
+                    </div>
+                    <input type="text" class="form-control" id="lastName" aria-label="Last Name" required />
+                    <div class="invalid-feedback">Last name is required</div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Address *</span>
+                </div>
+                <input id="address" type="text" class="form-control" placeholder="Enter home address"
+                    aria-label="Address" aria-describedby="Address" required>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Email *</span>
+                </div>
+                <input type="email" class="form-control" id="emailAddress" aria-label="Email"
+                    placeholder="Enter a valid email address" required />
+                <div class="input-group-prepend ml-3">
+                    <span class="input-group-text">Phone</span>
+                </div>
+                <input type="tel" class="form-control" id="phoneNumber" aria-label="Phone (Optional)"
+                    pattern="[0-9]{3} [0-9]{3}-[0-9]{4}" placeholder="Requested format 999 999-9999" />
+            </div>
+            <div class="form-group">
+                <label for="description">Brief Description *</label>
+                <textarea class="form-control" id="description" rows="5" required></textarea>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="hoa-callout hoa-callout-info">
+                        <h4><strong>Select Any Attachments to Upload</strong></h4>
+
+                        <div class="row mb-2">
+                            <div class="col-10"><strong>Upload multiple files one at a time.</strong></div>
+                            <div class="col-2 text-right">
+                                <small></small>
+                            </div>
+                        </div>
+                        <h5>Documentation of Project</h5>
+                        <ul>
+                            <li>Technical Drawings, Plan Schematics</li>
+                            <li>Photographs</li>
+                            <li>PDF, JPG, Word docs, etc</li>
+                        </ul>
+                        <div class="form-group mb-3">
+                            <input type="file" id="attachment" class="form-control-file">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-6"></div>
+            </div>
+            <!-- Buttons -->
+            <hr>
+            <div class="row">
+
+                <div class="col-6">
+                    <button class="btn btn-primary hoa-button-primary mr-3" id="btnSave" disabled>Send to HOA
+                        Board</button>
+                    <a href="<?= ScriptApp.getService().getUrl(); ?>?v=done" id="btnDone" class="btn btn-secondary"
+                        target="_top">Done</a></div>
+                <div class="col-6 text-right">
+                    <!-- For Questions contact  -->
+                </div>
+            </div>
+        </form>
+
+        <div id="messageAlert" class="alert alert-success mt-4 hoa-alert" role="alert" style="display: none;">
+            <h4 class="alert-heading">Save Successful</h4>
+            <p id="messageContent"></p>
+            <hr>
+            <p class="mb-0" id="messageFooter"></p>
+        </div>
+    </div>
+
+    <div id="loading" class="loading pt-5" style="display: none;">
+        <div class="d-flex justify-content-center">
+            <div>
+                <div class="spinner-border mt-5" role="status" style="width: 4rem; height: 4rem;">
+                    <span class="sr-only">Saving...</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="pt-3 text-center">Please be patient<br>as your file<br>is being uploaded...</div>
+    </div>
+    <?!= include("Includes/html/footer"); ?>
+    <?!= include("Includes/scripts/global"); ?>
+</body>
+
+</html>

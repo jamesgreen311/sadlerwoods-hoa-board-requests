@@ -1,0 +1,95 @@
+<script>
+  document.addEventListener("DOMContentLoaded", pageLoaded);
+  document.getElementById('btnSave').addEventListener("click", serializeAndSave);
+  document.getElementById('frmMain').addEventListener("submit", stopSubmit);
+
+  function pageLoaded() {
+    /* Add page initialization here */
+    google.script.run.withSuccessHandler(setCopyrightYear).getCurrentYear();
+  }
+
+  function stopSubmit(e) {
+    e.preventDefault();
+    return false;
+  }
+
+  function serializeAndSave() {
+    let f = document.getElementById('attachment');
+    const file = f.files[0];
+    const fr = new FileReader();
+    let ln = document.getElementById('lastName');
+    let fn = document.getElementById('firstName');
+    let e = document.getElementById('emailAddress');
+    let addr = document.getElementById('address');
+    let desc = document.getElementById('briefDescription');
+    let ph = document.getElementById('phoneNumber');
+    let fileNameFormatted = "";
+    let data = [fn.value, ln.value, addr.value, e.value, ph.value, desc.value];
+
+    if (allFieldsValid()) {
+      document.getElementById('messageAlert').style.display = "none";
+      document.getElementById('loading').style.display = "block";
+
+      if (f.value === "") {
+        data.push(f.value);
+        google.script.run.withSuccessHandler(saveFormSuccess).saveToSheet(data);
+      } else {
+        // prepend owner name to attachment file
+        fileNameFormatted = `${ln.value}-${fn.value}-${f.value}`;
+        data.push(fileNameFormatted);
+        fr.onload = function (e) {
+          const obj = {
+            filename: fileNameFormatted,
+            mimeType: file.type,
+            bytes: [...new Int8Array(e.target.result)]
+          };
+          google.script.run.withSuccessHandler(saveFormSuccess).saveFile(obj, data);
+        };
+        fr.readAsArrayBuffer(file);
+      }
+    } else {
+      return false;
+    }
+
+  }
+
+  function saveFormSuccess(e) {
+    let f = document.getElementById('attachment').value;
+    let footerMessage = "";
+    let messageContent = "";
+
+    if (f === "") {
+      messageContent = "";
+      footerMessage = "";
+    } else {
+      footerMessage = "";
+      messageContent = `Your request has been saved. Would you like to send any other attachments?`;
+    }
+    document.getElementById('loading').style.display = "none";
+    document.getElementById('messageContent').innerHTML = messageContent;
+    document.getElementById('messageFooter').innerHTML = footerMessage;
+    document.getElementById('attachment').value = "";
+    document.getElementById('messageAlert').style.display = "block";
+    container.style.display = "none";
+
+  }
+
+  function allFieldsValid() {
+    if (publishMode === "test") {
+      return true;
+    }
+    let inputs = document.querySelectorAll('input');
+    let invalidCount = 0;
+
+    inputs.forEach(function (input) {
+      if (!input.validity.valid) {
+        invalidCount++;
+      }
+    })
+    return invalidCount == 0;
+  }
+
+  function setCopyrightYear(yr) {
+    document.getElementById("copyrightYear").innerHTML = `Copyright &copy; ${yr}`;
+  }
+</script>

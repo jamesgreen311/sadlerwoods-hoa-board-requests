@@ -1,0 +1,58 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        /* override bootstrap */
+        /* Font from main website */
+        font-family: Roboto, sans-serif;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    h1, h2, h3, h4, h5 {
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    .smaller {
+        font-size: 60%;
+    }
+
+    .banner {
+        background-color: burlywood;
+        border-top: 4px solid darkgoldenrod;
+        color: #4F1900;
+    }
+
+    .footer {
+        flex-shrink: 0;
+        margin-top: 25px;
+        width: 100%;
+        padding: .5rem .5rem .5rem 25px;
+        background-color: burlywood;
+        border-bottom: 4px solid darkgoldenrod;
+        color: #4F1900;
+    }
+
+    .content {
+        flex: 1 0 auto;
+    }
+
+    .loading {
+        background-color: lightsteelblue;
+        width: 100vw;
+        height: 100vw;
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        opacity: .95;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+</style>
