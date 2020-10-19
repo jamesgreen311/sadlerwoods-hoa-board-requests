@@ -1,5 +1,6 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap');
 
     html,
     body {
@@ -15,7 +16,17 @@
         flex-direction: column;
     }
 
-    h1, h2, h3, h4, h5 {
+    header {
+        font-family: 'Crimson Text', serif;
+        font-size: 3rem;
+        border-bottom: 5px solid hsl(50, 70%, 79%);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
         font-family: 'Ubuntu', sans-serif;
     }
 
@@ -24,19 +35,25 @@
     }
 
     .banner {
-        background-color: burlywood;
-        border-top: 4px solid darkgoldenrod;
-        color: #4F1900;
+        /* background-color: burlywood; */
+        background-color: #2D1B00;
+        /* border-top: 4px solid darkgoldenrod; */
+        /* color: #4F1900; */
+        color: hsl(50, 70%, 79%);
+        background-image: url(https://drive.google.com/uc?export=view&id=1anUczjQ3WsuCY9uC-rH_4UFLCC5gmvBw);
+        background-repeat: no-repeat;
+        background-position: center bottom;
     }
 
     .footer {
+        font-family: 'Crimson Text', serif;
         flex-shrink: 0;
         margin-top: 25px;
         width: 100%;
         padding: .5rem .5rem .5rem 25px;
-        background-color: burlywood;
-        border-bottom: 4px solid darkgoldenrod;
-        color: #4F1900;
+        background-color: #2D1B00;
+        border-bottom: 5px solid hsl(50, 70%, 79%);
+        color: hsl(50, 70%, 79%);
     }
 
     .content {
