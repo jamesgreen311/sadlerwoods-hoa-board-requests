@@ -58,6 +58,16 @@
                 <label for="description">Brief Description *</label>
                 <textarea class="form-control" id="description" rows="5" required></textarea>
             </div>
+
+            <div id="messageAlert" class="alert alert-success mt-4 hoa-alert" role="alert" style="display: none;">
+                <h4 class="alert-heading">Save Successful</h4>
+                <p id="messageContent"></p>
+                <div id="messageFooterContainer">
+                    <hr>
+                    <p class="mb-0" id="messageFooter"></p>
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="col-6">
                     <div class="hoa-callout hoa-callout-info">
@@ -88,7 +98,7 @@
             <div class="row">
 
                 <div class="col-6">
-                    <button class="btn btn-primary hoa-button-primary mr-3" id="btnSave" disabled>Send to HOA
+                    <button class="btn btn-primary hoa-button-primary mr-3" id="btnSave">Send to HOA
                         Board</button>
                     <a href="<?= ScriptApp.getService().getUrl(); ?>?v=done" id="btnDone" class="btn btn-secondary"
                         target="_top">Done</a></div>
@@ -98,12 +108,6 @@
             </div>
         </form>
 
-        <div id="messageAlert" class="alert alert-success mt-4 hoa-alert" role="alert" style="display: none;">
-            <h4 class="alert-heading">Save Successful</h4>
-            <p id="messageContent"></p>
-            <hr>
-            <p class="mb-0" id="messageFooter"></p>
-        </div>
     </div>
 
     <div id="loading" class="loading pt-5" style="display: none;">

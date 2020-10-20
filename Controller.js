@@ -29,7 +29,7 @@ function showDone() {
 
 function saveFile(f, d) {
     let blob = Utilities.newBlob(f.bytes, f.mimeType, f.filename);
-    let uploadFolder = DriveApp.getFolderById(imageFolderId)
+    let uploadFolder = DriveApp.getFolderById(docFolderId);
     let today = new Date();
 
     let newFile = uploadFolder.createFile(blob).getId();
@@ -37,13 +37,13 @@ function saveFile(f, d) {
     d.push(today);
 
     let done = saveToSheet(d);
-    Logger.log("Uploaded file id = %s", newFile)
+    Logger.log("Uploaded file id = %s", newFile);
     return done;
 }
 
 function saveToSheet(data) {
     let ss = SpreadsheetApp.getActiveSpreadsheet();
-    let ws = ss.getSheetByName(sheetName);
+    let ws = ss.getSheetByName(targetSheet);
 
     ws.appendRow(data);
     Logger.log(data);

@@ -18,3 +18,7 @@ function getCurrentYear() {
   y = new Date().getFullYear();
   return y;
 }
+
+function getPublishMode() {
+  return publishMode === "test";
+}

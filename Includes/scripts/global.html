@@ -2,10 +2,18 @@
   document.addEventListener("DOMContentLoaded", pageLoaded);
   document.getElementById('btnSave').addEventListener("click", serializeAndSave);
   document.getElementById('frmMain').addEventListener("submit", stopSubmit);
+  var publishMode;
 
   function pageLoaded() {
     /* Add page initialization here */
     google.script.run.withSuccessHandler(setCopyrightYear).getCurrentYear();
+    google.script.run.withSuccessHandler(setPublishMode).getPublishMode();
+  }
+
+  function setPublishMode(b) {
+    if (b) {
+      publishMode = "test";
+    }
   }
 
   function stopSubmit(e) {
@@ -21,7 +29,7 @@
     let fn = document.getElementById('firstName');
     let e = document.getElementById('emailAddress');
     let addr = document.getElementById('address');
-    let desc = document.getElementById('briefDescription');
+    let desc = document.getElementById('description');
     let ph = document.getElementById('phoneNumber');
     let fileNameFormatted = "";
     let data = [fn.value, ln.value, addr.value, e.value, ph.value, desc.value];
@@ -31,11 +39,11 @@
       document.getElementById('loading').style.display = "block";
 
       if (f.value === "") {
-        data.push(f.value);
+        data.push(fileNameFormatted);
         google.script.run.withSuccessHandler(saveFormSuccess).saveToSheet(data);
       } else {
         // prepend owner name to attachment file
-        fileNameFormatted = `${ln.value}-${fn.value}-${f.value}`;
+        fileNameFormatted = `${ln.value}-${fn.value}-${file.name}`;
         data.push(fileNameFormatted);
         fr.onload = function (e) {
           const obj = {
@@ -67,17 +75,18 @@
     }
     document.getElementById('loading').style.display = "none";
     document.getElementById('messageContent').innerHTML = messageContent;
-    document.getElementById('messageFooter').innerHTML = footerMessage;
+    if (footerMessage !== "") {
+      document.getElementById('messageFooter').innerHTML = footerMessage;      
+    } else {
+      document.getElementById('messageFooterContainer').style.display = "none";
+    }
+
     document.getElementById('attachment').value = "";
     document.getElementById('messageAlert').style.display = "block";
-    container.style.display = "none";
 
   }
 
   function allFieldsValid() {
-    if (publishMode === "test") {
-      return true;
-    }
     let inputs = document.querySelectorAll('input');
     let invalidCount = 0;
 
