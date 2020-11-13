@@ -1,27 +1,33 @@
 // Defines the structure of the config array
 const DataMap = {
-    firstName: {
+    houseNumber: {
         byColNum: 1
     },
-    lastName: {
+    streetAddress: {
         byColNum: 2
     },
-    address: {
+    lastName: {
         byColNum: 3
     },
-    briefDescription: {
+    firstName: {
         byColNum: 4
     },
-    attachments: {
+    email: {
         byColNum: 5
     },
-    email: {
+    phone: {
         byColNum: 6
     },
-    phone: {
+    briefDescription: {
         byColNum: 7
     },
-    timestamp: {
+    attachments: {
         byColNum: 8
+    },
+    fileId: {
+        byColNum: 9
+    },
+    timestamp: {
+        byColNum: 10
     }
 }

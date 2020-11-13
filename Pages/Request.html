@@ -26,7 +26,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">First Name</span>
                     </div>
-                    <input type="text" class="form-control" id="firstName" aria-label="First Name" required />
+                    <input type="text" class="form-control" id="firstName" aria-label="First Name" required autofocus />
                     <div class="invalid-feedback">First name is required</div>
                     <div class="input-group-prepend ml-3">
                         <span class="input-group-text">Last Name</span>
@@ -37,19 +37,28 @@
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Address *</span>
+                    <span class="input-group-text">House Number</span>
                 </div>
-                <input id="address" type="text" class="form-control" placeholder="Enter home address"
-                    aria-label="Address" aria-describedby="Address" required>
+                <input id="houseNumber" type="number" class="form-control" aria-label="House Number"
+                    aria-describedby="House Number" required maxlength="6" pattern="[0-9]+">
+                <div class="input-group-prepend ml-3">
+                    <label class="input-group-text" for="streetName">Street Name</label>
+                </div>
+                <select class="custom-select" id="streetName">
+                    <option selected>Choose...</option>
+                    <option value="1">Oakstone Dr</option>
+                    <option value="2">Hargrave Ct</option>
+                    <option value="3">Yorkminster Dr</option>
+                </select>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Email *</span>
+                    <span class="input-group-text">Email</span>
                 </div>
                 <input type="email" class="form-control" id="emailAddress" aria-label="Email"
                     placeholder="Enter a valid email address" required />
                 <div class="input-group-prepend ml-3">
-                    <span class="input-group-text">Phone</span>
+                    <span class="input-group-text">Phone (Optional)</span>
                 </div>
                 <input type="tel" class="form-control" id="phoneNumber" aria-label="Phone (Optional)"
                     pattern="[0-9]{3} [0-9]{3}-[0-9]{4}" placeholder="Requested format 999 999-9999" />
@@ -67,7 +76,7 @@
                     <p class="mb-0" id="messageFooter"></p>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-6">
                     <div class="hoa-callout hoa-callout-info">
